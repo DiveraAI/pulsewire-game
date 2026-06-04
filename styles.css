@@ -1,0 +1,176 @@
+/* PULSEWIRE — marketing site. Brand-matched to the game (orange/cyan/black, CRT). */
+:root {
+  --bg-deep: #0a0e14;
+  --bg-mid: #11171f;
+  --conduit: #ffa070;
+  --conduit-bright: #ffd4b8;
+  --source-bright: #ffa070;
+  --sink: #4ee0ff;
+  --sink-bright: #b0f4ff;
+  --flare: #ffe04a;
+  --danger: #ff2a3a;
+  --text-dim: #6e7585;
+  --text-bright: #e8ecf2;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  background: var(--bg-deep);
+  color: var(--text-bright);
+  font-family: 'JetBrains Mono', ui-monospace, monospace;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+  /* faint CRT scanlines + radial glow */
+  background-image:
+    radial-gradient(ellipse at 50% 0%, rgba(78,224,255,0.06) 0%, transparent 55%),
+    radial-gradient(ellipse at 50% 100%, rgba(255,160,112,0.05) 0%, transparent 55%),
+    repeating-linear-gradient(0deg, rgba(255,255,255,0.012) 0 1px, transparent 1px 3px);
+}
+
+a { color: var(--sink-bright); text-decoration: none; }
+a:hover { text-decoration: underline; }
+
+/* Video background: full screen, subtle layout overlay, retro grid CRT styling */
+.video-bg {
+  position: fixed;
+  inset: 0;
+  z-index: -2;
+  pointer-events: none;
+  overflow: hidden;
+  background: var(--bg-deep);
+}
+.video-bg video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0.12; /* kept dim to keep text readable */
+  filter: saturate(0.7) brightness(0.5) contrast(1.1);
+  transition: opacity 500ms ease;
+}
+.video-bg-overlay {
+  position: absolute;
+  inset: 0;
+  /* layers glow gradients + repeating lines on top of the video stream */
+  background-image:
+    radial-gradient(ellipse at 50% 0%, rgba(78,224,255,0.06) 0%, transparent 60%),
+    radial-gradient(ellipse at 50% 100%, rgba(255,160,112,0.04) 0%, transparent 60%),
+    repeating-linear-gradient(0deg, rgba(255,255,255,0.008) 0 1px, transparent 1px 3px);
+}
+
+/* Ambient background wire — subtle, behind all content */
+.bg-wire { position: fixed; inset: 0; z-index: -1; pointer-events: none; overflow: hidden; opacity: 0.35; }
+.bg-wire .wire-glow { fill: none; stroke: var(--conduit); stroke-width: 9; opacity: 0.12; }
+.bg-wire .wire-core { fill: none; stroke: var(--conduit-bright); stroke-width: 2.5; opacity: 0.7; filter: drop-shadow(0 0 6px rgba(255,160,112,0.7)); }
+
+@media (prefers-reduced-motion: reduce) {
+  .bg-wire { display: none; }
+  .video-bg { display: none; }
+}
+
+.wrap { max-width: 980px; margin: 0 auto; padding: 0 24px; }
+
+/* ── HERO ── */
+.hero { text-align: center; padding: 72px 24px 56px; }
+.hero-mark {
+  width: 168px; height: 168px;
+  filter: drop-shadow(0 0 40px rgba(255,160,112,0.35));
+}
+.hero-title {
+  font-family: 'Major Mono Display', monospace;
+  font-size: clamp(40px, 11vw, 84px);
+  letter-spacing: 0.06em;
+  color: var(--conduit-bright);
+  text-shadow: 0 0 30px rgba(255,160,112,0.45);
+  margin: 14px 0 4px;
+}
+.hero-tag {
+  font-size: clamp(10px, 2.6vw, 13px);
+  letter-spacing: 0.34em;
+  text-transform: uppercase;
+  color: var(--text-dim);
+}
+.hero-hook {
+  max-width: 620px; margin: 26px auto 0;
+  font-size: 17px; color: var(--text-bright);
+}
+.hero-hook b { color: var(--flare); font-weight: 700; }
+
+/* App Store badge / CTA */
+.cta { margin-top: 34px; display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; }
+.badge {
+  display: inline-flex; align-items: center; gap: 10px;
+  padding: 13px 22px; border-radius: 8px;
+  border: 1px solid rgba(176,244,255,0.45);
+  background: rgba(78,224,255,0.06);
+  color: var(--sink-bright);
+  font-size: 13px; letter-spacing: 0.12em; text-transform: uppercase;
+  transition: background 160ms, border-color 160ms;
+}
+.badge:hover { background: rgba(78,224,255,0.14); border-color: var(--sink-bright); text-decoration: none; }
+.badge.soon { border-color: rgba(255,160,112,0.45); color: var(--conduit-bright); background: rgba(255,160,112,0.05); }
+.badge .ico { font-size: 18px; }
+
+/* ── SECTIONS ── */
+section { padding: 56px 0; border-top: 1px solid rgba(255,255,255,0.05); }
+.section-label {
+  font-family: 'Major Mono Display', monospace;
+  font-size: 12px; letter-spacing: 0.3em; text-transform: uppercase;
+  color: var(--sink-bright); text-align: center; margin-bottom: 30px;
+  text-shadow: 0 0 16px rgba(78,224,255,0.3);
+}
+
+/* Screenshots */
+.shot-hero { max-width: 440px; margin: 0 auto 34px; text-align: center; }
+.shot-hero img {
+  width: 100%; height: auto; display: block;
+  border: 1px solid rgba(176,244,255,0.22); border-radius: 14px;
+  box-shadow: 0 0 50px rgba(78,224,255,0.12);
+}
+.shots { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 18px; align-items: start; }
+.shot { text-align: center; }
+.shot img {
+  width: 100%; height: auto; display: block;
+  border: 1px solid rgba(176,244,255,0.18); border-radius: 12px;
+  background: #05070b;
+}
+.shot .cap { margin-top: 10px; font-size: 12px; color: var(--text-dim); letter-spacing: 0.08em; }
+
+/* Features */
+.features { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 18px; }
+.feature {
+  border: 1px solid rgba(255,160,112,0.16); background: rgba(255,160,112,0.03);
+  border-radius: 10px; padding: 20px;
+}
+.feature h3 {
+  font-family: 'Major Mono Display', monospace; font-size: 14px; letter-spacing: 0.08em;
+  color: var(--conduit-bright); margin-bottom: 8px;
+}
+.feature p { font-size: 14px; color: var(--text-dim); }
+
+/* Pitch */
+.pitch { max-width: 680px; margin: 0 auto; text-align: center; font-size: 17px; color: var(--text-bright); }
+.pitch .src { color: var(--source-bright); }
+.pitch .snk { color: var(--sink-bright); }
+.pitch .dgr { color: var(--flare); }
+
+/* ── PROSE pages (privacy / support) ── */
+.page { max-width: 720px; margin: 0 auto; padding: 64px 24px; }
+.page h1 {
+  font-family: 'Major Mono Display', monospace; font-size: 28px; letter-spacing: 0.05em;
+  color: var(--conduit-bright); margin-bottom: 6px;
+}
+.page .updated { color: var(--text-dim); font-size: 12px; letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 28px; }
+.page h2 { font-size: 16px; color: var(--sink-bright); margin: 28px 0 8px; letter-spacing: 0.04em; }
+.page p { color: var(--text-bright); margin-bottom: 14px; }
+.page a.back { display: inline-block; margin-bottom: 24px; font-size: 13px; }
+
+/* ── FOOTER ── */
+footer { border-top: 1px solid rgba(255,255,255,0.06); padding: 40px 24px; text-align: center; color: var(--text-dim); }
+footer .mark { font-family: 'Major Mono Display', monospace; letter-spacing: 0.2em; color: var(--text-dim); margin-bottom: 14px; }
+footer .studio { font-family: 'Major Mono Display', monospace; font-size: 11px; letter-spacing: 0.18em; color: var(--conduit-bright); margin-bottom: 8px; }
+footer nav { display: flex; gap: 22px; justify-content: center; flex-wrap: wrap; margin-bottom: 14px; font-size: 13px; letter-spacing: 0.08em; }
+footer .copy { font-size: 12px; letter-spacing: 0.1em; }

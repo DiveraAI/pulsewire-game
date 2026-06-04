@@ -1,0 +1,113 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>PULSEWIRE — A Cyberpunk High-Stakes Thriller</title>
+  <meta name="description" content="Touch the source, ground the spark, defy the cold logic of the mainframe. A minimalist neon-noir wire-tracing thriller. 21 levels, a built-in editor, 100% offline.">
+
+  <!-- Open Graph / social preview -->
+  <meta property="og:title" content="PULSEWIRE">
+  <meta property="og:description" content="Skim death for points. Thread one wire through the hunting swarm. A cyberpunk high-stakes thriller.">
+  <meta property="og:type" content="website">
+  <meta property="og:image" content="assets/pulsewire-mark.png">
+  <!-- TODO: set og:url to your final domain, e.g. https://pulsewire.app -->
+
+  <link rel="icon" href="assets/favicon.png" type="image/png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Major+Mono+Display&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+  <!-- ── Video background: system crash run ── -->
+  <div class="video-bg" aria-hidden="true">
+    <video autoplay loop muted playsinline>
+      <source src="assets/pulsewire-systemcrash.mp4" type="video/mp4">
+    </video>
+    <div class="video-bg-overlay"></div>
+  </div>
+
+  <!-- ── Ambient background: a slow neon "pulsewire" drifting diagonally ── -->
+  <div class="bg-wire" aria-hidden="true">
+    <svg width="100%" height="100%" viewBox="0 0 1600 900" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
+      <g transform="rotate(-14 800 450)">
+        <g>
+          <animateTransform attributeName="transform" attributeType="XML" type="translate" from="0 0" to="-560 0" dur="42s" repeatCount="indefinite"/>
+          <path class="wire-glow" d="M -800 520 q 140 -55 280 0 t 280 0 t 280 0 t 280 0 t 280 0 t 280 0 t 280 0 t 280 0 t 280 0 t 280 0 t 280 0 t 280 0 t 280 0"/>
+          <path class="wire-core" d="M -800 520 q 140 -55 280 0 t 280 0 t 280 0 t 280 0 t 280 0 t 280 0 t 280 0 t 280 0 t 280 0 t 280 0 t 280 0 t 280 0 t 280 0"/>
+        </g>
+      </g>
+    </svg>
+  </div>
+
+  <!-- ── HERO ── -->
+  <header class="hero">
+    <img class="hero-mark" src="assets/pulsewire-mark.png" alt="PULSEWIRE mark — a spark threading a neon iris">
+    <h1 class="hero-title">PULSEWIRE</h1>
+    <p class="hero-tag">A Cyberpunk High-Stakes Thriller</p>
+    <p class="hero-hook">Touch the source. Trace a living wire to its sink. Skim a hunting patrol by a hair for a <b>NEAR-DEATH +1000</b> — or play it too safe and the mainframe locks you out.</p>
+
+    <div class="cta">
+      <!-- TODO: replace href with your App Store link once approved -->
+      <a class="badge soon" href="#" aria-disabled="true"><span class="ico">&#63743;</span> Coming to the App Store · 2026</a>
+    </div>
+  </header>
+
+  <main class="wrap">
+
+    <!-- ── PITCH ── -->
+    <section id="about">
+      <div class="section-label">The Run</div>
+      <p class="pitch">
+        Ground three sparks to break each node — but the only points worth having are the ones
+        you steal by skimming death. The closer you graze a <span class="dgr">patrol</span> without
+        touching it, the higher you score. Hug it by a hair and time fractures into slow motion.
+        Every run is a negotiation with your own nerve.
+      </p>
+    </section>
+
+    <!-- ── SCREENSHOTS ── -->
+    <section id="screens">
+      <div class="section-label">Signals</div>
+      <figure class="shot-hero">
+        <img src="screenshots/core_breach.png" alt="A glowing wire threads an atom core for a +2000 Core Breach" loading="lazy">
+        <figcaption class="cap">Breach the core. +2000.</figcaption>
+      </figure>
+      <div class="shots">
+        <figure class="shot"><img src="screenshots/near_death.png" alt="A near-death graze scoring +1000" loading="lazy"><figcaption class="cap">Graze by a hair. Bank +1000.</figcaption></figure>
+        <figure class="shot"><img src="screenshots/event_horizon.png" alt="A dense field of hunting patrols" loading="lazy"><figcaption class="cap">One wire through the hunting swarm.</figcaption></figure>
+        <figure class="shot"><img src="screenshots/best_scores.png" alt="Per-level best scores list" loading="lazy"><figcaption class="cap">Beat your best on every node.</figcaption></figure>
+      </div>
+    </section>
+
+    <!-- ── FEATURES ── -->
+    <section id="features">
+      <div class="section-label">Specs</div>
+      <div class="features">
+        <div class="feature"><h3>21 Nodes</h3><p>From the first clean lanes to SYSTEM CRASH — the safe corridor narrows and the score floor rises with a dozen hostile classes.</p></div>
+        <div class="feature"><h3>Skim to Score</h3><p>Graze a patrol without touching it to bank points. The closer you dare, the higher you climb — hug it by a hair for a near-death +1000 and time fractures into slow motion.</p></div>
+        <div class="feature"><h3>Rewind, Don't Die</h3><p>Lift to drop an anchor. Get clipped and you rewind to it instead of dying — insurance for the bravest lines, taxed on every use.</p></div>
+        <div class="feature"><h3>Architect Mode</h3><p>Clear all 21 in sequence to unlock a built-in level editor. Move patrols, swap enemies, retune speed, play your own grids.</p></div>
+        <div class="feature"><h3>One Finger</h3><p>Pure skill, one thumb. Trace the wire, long-press to zoom in on the impossible gap. No fluff.</p></div>
+        <div class="feature"><h3>100% Offline</h3><p>No ads. No in-app purchases. No accounts. No data collected — nothing ever leaves your device.</p></div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ── FOOTER ── -->
+  <footer>
+    <div class="mark">&#9670; PULSEWIRE &#9670;</div>
+    <nav>
+      <a href="privacy.html">Privacy</a>
+      <a href="support.html">Support</a>
+      <a href="mailto:divera@divera.ai">Contact</a>
+    </nav>
+    <div class="studio">A Divera Game Studio production</div>
+    <div class="copy">&copy; 2026 Divera Game Studio &middot; Touch the source. Ground the spark.</div>
+  </footer>
+
+</body>
+</html>
