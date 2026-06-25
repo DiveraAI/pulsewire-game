@@ -99,20 +99,22 @@ a:hover { text-decoration: underline; }
 }
 .hero-hook b { color: var(--flare); font-weight: 700; }
 
-/* App Store badge / CTA */
+/* Official Apple "Download on the App Store" badge */
 .cta { margin-top: 34px; display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; }
-.badge {
-  display: inline-flex; align-items: center; gap: 10px;
-  padding: 13px 22px; border-radius: 8px;
-  border: 1px solid rgba(176,244,255,0.45);
-  background: rgba(78,224,255,0.06);
-  color: var(--sink-bright);
-  font-size: 13px; letter-spacing: 0.12em; text-transform: uppercase;
-  transition: background 160ms, border-color 160ms;
+.appstore-badge {
+  display: inline-block;
+  /* Apple requires clear space around the badge of at least 1/10 its height */
+  padding: 6px;
+  border-radius: 9px;
+  transition: transform 160ms ease, filter 160ms ease;
 }
-.badge:hover { background: rgba(78,224,255,0.14); border-color: var(--sink-bright); text-decoration: none; }
-.badge.soon { border-color: rgba(255,160,112,0.45); color: var(--conduit-bright); background: rgba(255,160,112,0.05); }
-.badge .ico { font-size: 18px; }
+.appstore-badge img {
+  display: block;
+  height: 56px; width: auto;
+  filter: drop-shadow(0 0 18px rgba(78,224,255,0.18));
+}
+.appstore-badge:hover { transform: translateY(-1px); }
+.appstore-badge:hover img { filter: drop-shadow(0 0 26px rgba(78,224,255,0.3)); }
 
 /* ── SECTIONS ── */
 section { padding: 56px 0; border-top: 1px solid rgba(255,255,255,0.05); }
@@ -123,13 +125,37 @@ section { padding: 56px 0; border-top: 1px solid rgba(255,255,255,0.05); }
   text-shadow: 0 0 16px rgba(78,224,255,0.3);
 }
 
-/* Screenshots */
-.shot-hero { max-width: 440px; margin: 0 auto 34px; text-align: center; }
-.shot-hero img {
-  width: 100%; height: auto; display: block;
-  border: 1px solid rgba(176,244,255,0.22); border-radius: 14px;
-  box-shadow: 0 0 50px rgba(78,224,255,0.12);
+/* Marketing video centerpiece — gameplay preview in a phone frame */
+.preview-phone { max-width: 300px; margin: 0 auto 40px; text-align: center; }
+.phone-frame {
+  position: relative;
+  border-radius: 30px;
+  padding: 8px;
+  background: linear-gradient(160deg, #1a212c 0%, #0a0e14 60%);
+  border: 1px solid rgba(176,244,255,0.18);
+  box-shadow:
+    0 0 60px rgba(78,224,255,0.16),
+    0 0 0 1px rgba(0,0,0,0.6) inset,
+    0 24px 60px rgba(0,0,0,0.55);
 }
+/* notch */
+.phone-frame::before {
+  content: "";
+  position: absolute;
+  top: 8px; left: 50%; transform: translateX(-50%);
+  width: 86px; height: 18px;
+  background: #05070b;
+  border-radius: 0 0 12px 12px;
+  z-index: 2;
+}
+.preview-video {
+  display: block;
+  width: 100%; height: auto;
+  border-radius: 22px;
+  background: #05070b;
+}
+
+/* Screenshots */
 .shots { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 18px; align-items: start; }
 .shot { text-align: center; }
 .shot img {

@@ -1,0 +1,25 @@
+# PULSEWIRE
+
+> A minimalist neon-noir wire-tracing thriller for iOS. You trace one living wire through a swarm of hunting patrols to its sink. Safe play locks you out; the only points worth having are stolen by skimming death — graze a patrol by a hair for a NEAR-DEATH +1000 and time fractures into slow motion.
+
+PULSEWIRE is a single-player, one-finger arcade game made by Divera Game Studio. It is 100% offline: no ads, no accounts, no in-app data collection. Free on the Apple App Store (iOS 17.0 or later): https://apps.apple.com/us/app/pulsewire/id6778034497
+
+## Core mechanics
+
+- **Trace, don't tap**: hold and drag one finger to guide a wire from a source to a sink.
+- **Skim to score**: the closer you graze a hostile patrol without touching it, the higher you score. A hair's-breadth pass is a NEAR-DEATH +1000.
+- **Rewind, don't die**: lift to drop an anchor; if you get clipped you rewind to it instead of dying — taxed on every use.
+- **Core Breach**: thread an atom core for +2000.
+- **21 nodes**: difficulty ramps from clean lanes to SYSTEM CRASH, with a dozen hostile enemy classes.
+- **Architect Mode**: clear all 21 levels in sequence to unlock a built-in level editor.
+
+## Pages
+
+- [Home](https://www.pulsewire-game.com/): pitch, gameplay video, and feature list.
+- [Privacy](https://www.pulsewire-game.com/privacy.html): privacy policy — no data is collected.
+- [Support](https://www.pulsewire-game.com/support.html): support and contact.
+
+## Contact
+
+- Email: divera@divera.ai
+- Studio: Divera Game Studio

@@ -1,0 +1,5 @@
+.DS_Store
+**/.DS_Store
+
+# Raw Apple badge source kit — only assets/app-store-badge.svg (the white SVG) is used by the site
+assets/Download_on_App_Store/

@@ -3,17 +3,72 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>PULSEWIRE — A Cyberpunk High-Stakes Thriller</title>
-  <meta name="description" content="Touch the source, ground the spark, defy the cold logic of the mainframe. A minimalist neon-noir wire-tracing thriller. 21 levels, a built-in editor, 100% offline.">
+  <title>PULSEWIRE — A Cyberpunk One-Finger Wire-Tracing Thriller</title>
+  <meta name="description" content="PULSEWIRE is a minimalist neon-noir thriller for iOS. Trace one living wire through a hunting swarm, skim death by a hair for a NEAR-DEATH +1000, and break 21 nodes. One finger, 100% offline, no ads, no data collected.">
+  <meta name="author" content="Divera Game Studio">
+  <meta name="theme-color" content="#0a0e14">
+  <link rel="canonical" href="https://www.pulsewire-game.com/">
 
   <!-- Open Graph / social preview -->
-  <meta property="og:title" content="PULSEWIRE">
-  <meta property="og:description" content="Skim death for points. Thread one wire through the hunting swarm. A cyberpunk high-stakes thriller.">
+  <meta property="og:site_name" content="PULSEWIRE">
+  <meta property="og:title" content="PULSEWIRE — A Cyberpunk Wire-Tracing Thriller">
+  <meta property="og:description" content="Skim death for points. Thread one wire through the hunting swarm. A one-finger neon-noir thriller — 21 nodes, 100% offline.">
   <meta property="og:type" content="website">
-  <meta property="og:image" content="assets/pulsewire-mark.png">
-  <!-- TODO: set og:url to your final domain, e.g. https://pulsewire.app -->
+  <meta property="og:url" content="https://www.pulsewire-game.com/">
+  <meta property="og:image" content="https://www.pulsewire-game.com/assets/pulsewire-poster.jpg">
+  <meta property="og:image:alt" content="A glowing orange wire threading a field of hunting cyan patrols">
+  <meta property="og:video" content="https://www.pulsewire-game.com/assets/pulsewire-preview.mp4">
+  <meta property="og:video:type" content="video/mp4">
+
+  <!-- Twitter / X card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="PULSEWIRE — A Cyberpunk Wire-Tracing Thriller">
+  <meta name="twitter:description" content="Skim death for points. Thread one wire through the hunting swarm. One finger, 21 nodes, 100% offline.">
+  <meta name="twitter:image" content="https://www.pulsewire-game.com/assets/pulsewire-poster.jpg">
 
   <link rel="icon" href="assets/favicon.png" type="image/png">
+
+  <!-- Structured data for Google & AI search engines -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "VideoGame",
+        "name": "PULSEWIRE",
+        "url": "https://www.pulsewire-game.com/",
+        "image": "https://www.pulsewire-game.com/assets/pulsewire-poster.jpg",
+        "description": "A minimalist neon-noir wire-tracing thriller. Trace one living wire through a hunting swarm, skim death by a hair to score, and break 21 nodes. One finger, 100% offline, no ads, no data collected.",
+        "genre": ["Arcade", "Action", "Indie"],
+        "gamePlatform": "iOS",
+        "operatingSystem": "iOS 17.0 or later",
+        "applicationCategory": "GameApplication",
+        "playMode": "SinglePlayer",
+        "inLanguage": "en",
+        "author": { "@type": "Organization", "name": "Divera Game Studio", "url": "https://www.pulsewire-game.com/" },
+        "publisher": { "@type": "Organization", "name": "Divera Game Studio" },
+        "installUrl": "https://apps.apple.com/us/app/pulsewire/id6778034497",
+        "downloadUrl": "https://apps.apple.com/us/app/pulsewire/id6778034497",
+        "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD", "availability": "https://schema.org/InStock", "url": "https://apps.apple.com/us/app/pulsewire/id6778034497" },
+        "video": {
+          "@type": "VideoObject",
+          "name": "PULSEWIRE — gameplay preview",
+          "description": "A live run threading a single wire through a swarm of hunting patrols toward the sink.",
+          "thumbnailUrl": "https://www.pulsewire-game.com/assets/pulsewire-poster.jpg",
+          "contentUrl": "https://www.pulsewire-game.com/assets/pulsewire-preview.mp4",
+          "uploadDate": "2026-06-25"
+        }
+      },
+      {
+        "@type": "Organization",
+        "name": "Divera Game Studio",
+        "url": "https://www.pulsewire-game.com/",
+        "email": "divera@divera.ai",
+        "logo": "https://www.pulsewire-game.com/assets/pulsewire-mark.png"
+      }
+    ]
+  }
+  </script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Major+Mono+Display&display=swap" rel="stylesheet">
@@ -50,8 +105,10 @@
     <p class="hero-hook">Touch the source. Trace a living wire to its sink. Skim a hunting patrol by a hair for a <b>NEAR-DEATH +1000</b> — or play it too safe and the mainframe locks you out.</p>
 
     <div class="cta">
-      <!-- TODO: replace href with your App Store link once approved -->
-      <a class="badge soon" href="#" aria-disabled="true"><span class="ico">&#63743;</span> Coming to the App Store · 2026</a>
+      <a class="appstore-badge" href="https://apps.apple.com/us/app/pulsewire/id6778034497"
+         target="_blank" rel="noopener">
+        <img src="assets/app-store-badge.svg" alt="Download PULSEWIRE on the App Store" width="167" height="56">
+      </a>
     </div>
   </header>
 
@@ -71,9 +128,16 @@
     <!-- ── SCREENSHOTS ── -->
     <section id="screens">
       <div class="section-label">Signals</div>
-      <figure class="shot-hero">
-        <img src="screenshots/core_breach.png" alt="A glowing wire threads an atom core for a +2000 Core Breach" loading="lazy">
-        <figcaption class="cap">Breach the core. +2000.</figcaption>
+      <figure class="preview-phone">
+        <div class="phone-frame">
+          <video class="preview-video" autoplay loop muted playsinline preload="metadata"
+                 poster="assets/pulsewire-poster.jpg"
+                 aria-label="PULSEWIRE gameplay preview — one wire threading a swarm of hunting patrols">
+            <source src="assets/pulsewire-preview.mp4" type="video/mp4">
+            <img src="assets/pulsewire-poster.jpg" alt="A glowing wire threading a field of hunting patrols">
+          </video>
+        </div>
+        <figcaption class="cap">One wire. One finger. The whole swarm between you and the sink.</figcaption>
       </figure>
       <div class="shots">
         <figure class="shot"><img src="screenshots/near_death.png" alt="A near-death graze scoring +1000" loading="lazy"><figcaption class="cap">Graze by a hair. Bank +1000.</figcaption></figure>
