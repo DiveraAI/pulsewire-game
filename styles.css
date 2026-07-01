@@ -127,6 +127,12 @@ section { padding: 56px 0; border-top: 1px solid rgba(255,255,255,0.05); }
 
 /* Marketing video centerpiece — gameplay preview in a phone frame */
 .preview-phone { max-width: 300px; margin: 0 auto 40px; text-align: center; }
+
+/* Two clips side by side — collapses to a stack on narrow screens */
+.duo-sub { text-align: center; font-size: 13px; color: var(--text-dim); letter-spacing: 0.08em; margin: -18px 0 30px; }
+.preview-duo { display: flex; gap: 26px; justify-content: center; align-items: flex-start; flex-wrap: wrap; margin: 0 auto 40px; }
+.preview-duo .preview-phone { margin: 0; max-width: 250px; flex: 0 1 250px; }
+.preview-video[data-autoplay] { cursor: pointer; }
 .phone-frame {
   position: relative;
   border-radius: 30px;

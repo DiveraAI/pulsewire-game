@@ -18,7 +18,7 @@
   <meta property="og:url" content="https://www.pulsewire-game.com/">
   <meta property="og:image" content="https://www.pulsewire-game.com/assets/pulsewire-poster.jpg">
   <meta property="og:image:alt" content="A glowing orange wire threading a field of hunting cyan patrols">
-  <meta property="og:video" content="https://www.pulsewire-game.com/assets/pulsewire-preview.mp4">
+  <meta property="og:video" content="https://www.pulsewire-game.com/assets/pulsewire-clip-a.mp4">
   <meta property="og:video:type" content="video/mp4">
 
   <!-- Twitter / X card -->
@@ -51,14 +51,24 @@
         "installUrl": "https://apps.apple.com/us/app/pulsewire/id6778034497",
         "downloadUrl": "https://apps.apple.com/us/app/pulsewire/id6778034497",
         "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD", "availability": "https://schema.org/InStock", "url": "https://apps.apple.com/us/app/pulsewire/id6778034497" },
-        "video": {
-          "@type": "VideoObject",
-          "name": "PULSEWIRE — gameplay preview",
-          "description": "A live run threading a single wire through a swarm of hunting patrols toward the sink.",
-          "thumbnailUrl": "https://www.pulsewire-game.com/assets/pulsewire-poster.jpg",
-          "contentUrl": "https://www.pulsewire-game.com/assets/pulsewire-preview.mp4",
-          "uploadDate": "2026-06-25T12:00:00+00:00"
-        }
+        "video": [
+          {
+            "@type": "VideoObject",
+            "name": "PULSEWIRE — tracing the wire",
+            "description": "A live run threading a single wire from the source to its sink across a dark node grid.",
+            "thumbnailUrl": "https://www.pulsewire-game.com/assets/pulsewire-clip-a-poster.jpg",
+            "contentUrl": "https://www.pulsewire-game.com/assets/pulsewire-clip-a.mp4",
+            "uploadDate": "2026-07-01T12:00:00+00:00"
+          },
+          {
+            "@type": "VideoObject",
+            "name": "PULSEWIRE — grounding the spark",
+            "description": "Curving a living wire past a node to ground the spark at the sink.",
+            "thumbnailUrl": "https://www.pulsewire-game.com/assets/pulsewire-clip-b-poster.jpg",
+            "contentUrl": "https://www.pulsewire-game.com/assets/pulsewire-clip-b.mp4",
+            "uploadDate": "2026-07-01T12:00:00+00:00"
+          }
+        ]
       },
       {
         "@type": "Organization",
@@ -129,17 +139,31 @@
     <!-- ── SCREENSHOTS ── -->
     <section id="screens">
       <div class="section-label">Signals</div>
-      <figure class="preview-phone">
-        <div class="phone-frame">
-          <video class="preview-video" autoplay loop muted playsinline preload="metadata"
-                 poster="assets/pulsewire-poster.jpg"
-                 aria-label="PULSEWIRE gameplay preview — one wire threading a swarm of hunting patrols">
-            <source src="assets/pulsewire-preview.mp4" type="video/mp4">
-            <img src="assets/pulsewire-poster.jpg" alt="A glowing wire threading a field of hunting patrols">
-          </video>
-        </div>
-        <figcaption class="cap">One wire. One finger. The whole swarm between you and the sink.</figcaption>
-      </figure>
+      <p class="duo-sub">Two runs. One wire. The swarm in between.</p>
+      <div class="preview-duo">
+        <figure class="preview-phone">
+          <div class="phone-frame">
+            <video class="preview-video" data-autoplay loop muted playsinline preload="none"
+                   poster="assets/pulsewire-clip-a-poster.jpg"
+                   aria-label="PULSEWIRE gameplay — tracing a living wire from source to sink">
+              <source src="assets/pulsewire-clip-a.mp4" type="video/mp4">
+              <img src="assets/pulsewire-clip-a-poster.jpg" alt="A glowing orange wire traced between two nodes on a dark grid">
+            </video>
+          </div>
+          <figcaption class="cap">Touch the source. Trace the living wire.</figcaption>
+        </figure>
+        <figure class="preview-phone">
+          <div class="phone-frame">
+            <video class="preview-video" data-autoplay loop muted playsinline preload="none"
+                   poster="assets/pulsewire-clip-b-poster.jpg"
+                   aria-label="PULSEWIRE gameplay — curving a wire past a node to ground the spark">
+              <source src="assets/pulsewire-clip-b.mp4" type="video/mp4">
+              <img src="assets/pulsewire-clip-b-poster.jpg" alt="A glowing wire curving past an orange node toward a bright sink">
+            </video>
+          </div>
+          <figcaption class="cap">Bend the line home. Ground the spark.</figcaption>
+        </figure>
+      </div>
       <div class="shots">
         <figure class="shot"><img src="screenshots/near_death.png" alt="A near-death graze scoring +1000" loading="lazy"><figcaption class="cap">Graze by a hair. Bank +1000.</figcaption></figure>
         <figure class="shot"><img src="screenshots/event_horizon.png" alt="A dense field of hunting patrols" loading="lazy"><figcaption class="cap">One wire through the hunting swarm.</figcaption></figure>
@@ -173,6 +197,31 @@
     <div class="studio">A Divera Game Studio production</div>
     <div class="copy">&copy; 2026 Divera Game Studio &middot; Touch the source. Ground the spark.</div>
   </footer>
+
+  <!-- Play the preview clips only while on screen (saves data), tap to pause/play -->
+  <script>
+  (function () {
+    var vids = Array.prototype.slice.call(document.querySelectorAll('.preview-video[data-autoplay]'));
+    if (!vids.length) return;
+    vids.forEach(function (v) {
+      v.addEventListener('click', function () {
+        if (v.paused) { var p = v.play(); if (p && p.catch) p.catch(function () {}); }
+        else { v.pause(); }
+      });
+    });
+    var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (reduce || !('IntersectionObserver' in window)) return;
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (e) {
+        var v = e.target;
+        if (e.isIntersecting && e.intersectionRatio >= 0.5) {
+          var p = v.play(); if (p && p.catch) p.catch(function () {});
+        } else { v.pause(); }
+      });
+    }, { threshold: [0, 0.5, 1] });
+    vids.forEach(function (v) { io.observe(v); });
+  })();
+  </script>
 
 </body>
 </html>
