@@ -62,6 +62,10 @@ missing anchor printed — update `make_demo.py`, never ship a half-patched demo
     (overflows off both ends on phones); the demo's taller badge-wall stack over a busy board
     made HUD/patrols bleed through the text. Demo skin: near-opaque backdrop + flex-start with
     `margin:auto` bookends (centered when short, internally scrollable when tall).
+11. **Two-tap web share** — iOS voids the tap's user activation during the multi-second clip
+    encode, so calling `navigator.share` afterwards silently fails (the app dodges this with a
+    native Share call). The demo shows a `SHARE THE CLIP` button once the encode completes; its
+    own fresh tap invokes the share sheet. `not now` escape included.
 
 ## Verified 2026-07-17 (browser pane, mobile viewport)
 
