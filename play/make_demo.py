@@ -148,6 +148,30 @@ patch("document.getElementById('resSub').textContent = 'All ' + levels.length + 
 patch("document.getElementById('resSub').textContent = 'All ' + levels.length + ' levels dismantled. The ledger is sealed.';",
       "document.getElementById('resSub').textContent = 'Five of twenty-one levels grounded. The ledger is sealed. The mainframe remains.';")
 
+# ── 9. iPhone Safari: the share-cut stage must track the VISUAL viewport ─────
+#   In mobile Safari 100vh (large viewport) ≠ innerHeight (visual viewport with the
+#   address bar showing) → the replay canvas buffer got stretched onto a taller CSS
+#   box (elongated clip) and the endcard's 0.63·OH CTA line slid into the bottom
+#   share prompt. Sizing the CSS box in px from the SAME source as the buffer keeps
+#   them locked; the resize listener re-syncs when the bar collapses/expands.
+#   (No-op in the app's WKWebView, where 100vh == innerHeight — game code untouched.)
+patch("stage.style.cssText = 'position:fixed;inset:0;z-index:9000;width:100vw;height:100vh;background:#000;touch-action:none;';",
+      "stage.style.cssText = 'position:fixed;inset:0;z-index:9000;background:#000;touch-action:none;';   // DEMO: sized in px by resizeStage (100vh trap)")
+
+patch("function resizeStage() { if (!stage) return; const dpr = Math.min(window.devicePixelRatio || 1, 2); stage.width = Math.round(innerWidth * dpr); stage.height = Math.round(innerHeight * dpr); }",
+      "function resizeStage() { if (!stage) return; const dpr = Math.min(window.devicePixelRatio || 1, 2); "
+      "stage.style.width = innerWidth + 'px'; stage.style.height = innerHeight + 'px'; "
+      "stage.width = Math.round(innerWidth * dpr); stage.height = Math.round(innerHeight * dpr); }")
+
+# ── 10. Lift the endcard text block clear of the bottom share prompt ─────────
+#   Even with the viewport fix, the CTA line at 0.63·OH clears the DOM prompt by
+#   only ~15–22px on small phones with the Safari bar visible. Raising the whole
+#   block gives it real air; encoded clips (no prompt) still read centered.
+patch('const cx = OW / 2, titleY = OH * 0.46, subY = OH * 0.55;',
+      'const cx = OW / 2, titleY = OH * 0.40, subY = OH * 0.49;   // DEMO: lifted clear of the share prompt')
+patch("ctx.fillStyle = 'rgba(130,236,255,0.97)'; ctx.fillText('FREE ON APP STORE & PLAY STORE', cx, OH * 0.63);",
+      "ctx.fillStyle = 'rgba(130,236,255,0.97)'; ctx.fillText('FREE ON APP STORE & PLAY STORE', cx, OH * 0.56);   // DEMO: lifted")
+
 OUT.write_text(html, encoding='utf-8')
 
 # ── 6. Asset subset: fonts + splash icon + story strips for L1–L5 (+06 spare) ─

@@ -6378,7 +6378,7 @@
       ctx.textAlign = 'center'; ctx.textBaseline = 'middle';
       const blackA = M.smooth(0, P2, op);
       if (blackA > 0.001) { ctx.globalAlpha = blackA; ctx.fillStyle = '#04060c'; ctx.fillRect(0, 0, OW, OH); ctx.globalAlpha = 1; }
-      const cx = OW / 2, titleY = OH * 0.46, subY = OH * 0.55;
+      const cx = OW / 2, titleY = OH * 0.40, subY = OH * 0.49;   // DEMO: lifted clear of the share prompt
       const tIn = M.smooth(P2, Math.min(1, P2 + 0.18), op);
       if (tIn > 0.001) {   // glitch-resolve the title
         const gl = 1 - M.smooth(P2, 0.80, op), jit = gl * OW * 0.014;
@@ -6396,7 +6396,7 @@
         ctx.globalAlpha = tIn * M.smooth(P2 + 0.16, 0.94, op);
         ctx.font = '700 ' + Math.round(OW * 0.036) + "px ui-sans-serif, system-ui, Arial";
         ctx.shadowColor = 'rgba(78,224,255,0.85)'; ctx.shadowBlur = OW * 0.025;
-        ctx.fillStyle = 'rgba(130,236,255,0.97)'; ctx.fillText('FREE ON APP STORE & PLAY STORE', cx, OH * 0.63);
+        ctx.fillStyle = 'rgba(130,236,255,0.97)'; ctx.fillText('FREE ON APP STORE & PLAY STORE', cx, OH * 0.56);   // DEMO: lifted
         ctx.shadowBlur = 0;
       }
       ctx.globalAlpha = 1; ctx.restore();
@@ -6528,14 +6528,14 @@
     function ensureStage() {
       if (stage) return;
       stage = document.createElement('canvas'); stage.id = 'cutFx';
-      stage.style.cssText = 'position:fixed;inset:0;z-index:9000;width:100vw;height:100vh;background:#000;touch-action:none;';
+      stage.style.cssText = 'position:fixed;inset:0;z-index:9000;background:#000;touch-action:none;';   // DEMO: sized in px by resizeStage (100vh trap)
       document.body.appendChild(stage); sctx = stage.getContext('2d');
       resizeStage(); window.addEventListener('resize', resizeStage);
     }
     // Cap the live-preview resolution: a 3× retina fullscreen makes the per-frame
     // chroma/bloom passes ~4× more expensive and drops frames exactly at the climax.
     // 1.5× is plenty for a glow-heavy stylized cut; the DOM prompt stays crisp.
-    function resizeStage() { if (!stage) return; const dpr = Math.min(window.devicePixelRatio || 1, 2); stage.width = Math.round(innerWidth * dpr); stage.height = Math.round(innerHeight * dpr); }
+    function resizeStage() { if (!stage) return; const dpr = Math.min(window.devicePixelRatio || 1, 2); stage.style.width = innerWidth + 'px'; stage.style.height = innerHeight + 'px'; stage.width = Math.round(innerWidth * dpr); stage.height = Math.round(innerHeight * dpr); }
     // Prominent "GETTING READY" render overlay. The encoder already reports a
     // percentage (encodeMediaRecorder → onStatus 'rendering NN%'); the old tiny
     // #cutStatus line made the encode read as "nothing is happening". This brings
