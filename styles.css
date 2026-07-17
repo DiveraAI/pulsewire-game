@@ -216,6 +216,7 @@ section { padding: 56px 0; border-top: 1px solid rgba(255,255,255,0.05); }
 
 /* Pitch */
 .pitch { max-width: 680px; margin: 0 auto; text-align: center; font-size: 17px; color: var(--text-bright); }
+#studio .pitch { margin-bottom: 40px; }   /* air between the intro line and the trio */
 .pitch .src { color: var(--source-bright); }
 .pitch .snk { color: var(--sink-bright); }
 .pitch .dgr { color: var(--flare); }
