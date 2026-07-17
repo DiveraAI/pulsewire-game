@@ -6483,6 +6483,29 @@
     // NB: the recorder mime contains a comma (…avc1.42E01E,mp4a.40.2), so the data
     // URL has commas before the payload — split on the 'base64,' marker, not ','.
     function blobToB64(blob) { return new Promise(function (res, rej) { const r = new FileReader(); r.onload = function () { const s = String(r.result), i = s.indexOf('base64,'); res(i >= 0 ? s.slice(i + 7) : s); }; r.onerror = rej; r.readAsDataURL(blob); }); }
+    function demoShareNow(file, status, done) {   // DEMO: two-tap share (see note above)
+      hidePrompt();
+      var b = document.getElementById('demoShareNow'), d = document.getElementById('demoShareSkip');
+      if (!b) {
+        b = document.createElement('button'); b.id = 'demoShareNow';
+        b.style.cssText = 'position:fixed;left:50%;top:50%;transform:translate(-50%,-50%);z-index:9002;'
+          + 'font:700 16px/1.2 ui-sans-serif,system-ui;letter-spacing:.12em;color:#06131a;'
+          + 'background:linear-gradient(180deg,#b0f4ff,#4ee0ff);border:0;border-radius:12px;'
+          + 'padding:18px 30px;box-shadow:0 0 34px rgba(78,224,255,.45)';
+        b.textContent = '\u2B06 SHARE THE CLIP';
+        document.body.appendChild(b);
+        d = document.createElement('button'); d.id = 'demoShareSkip';
+        d.style.cssText = 'position:fixed;left:50%;top:50%;transform:translate(-50%,64px);z-index:9002;'
+          + 'font:600 12px/1 ui-sans-serif,system-ui;letter-spacing:.1em;color:#9ccfde;'
+          + 'background:none;border:1px solid rgba(156,207,222,.35);border-radius:8px;padding:9px 16px';
+        d.textContent = 'not now';
+        document.body.appendChild(d);
+      }
+      b.style.display = 'block'; d.style.display = 'block';
+      function cleanup() { b.style.display = 'none'; d.style.display = 'none'; }
+      d.onclick = function () { cleanup(); status && status('cancelled'); done(false); };
+      b.onclick = function () { cleanup(); deliver(file, status).then(done, function () { done(false); }); };
+    }
     async function deliver(file, status) {
       const cap = window.Capacitor;
       if (cap && cap.isNativePlatform && cap.isNativePlatform()) {
@@ -6682,8 +6705,13 @@
         try {
           const r = await encode(curRec, curCut, setStatus);
           const file = new File([r.blob], 'pulsewire-run.' + r.ext, { type: r.ext === 'mp4' ? 'video/mp4' : 'video/webm' });
-          setStatus('opening share…');
-          await deliver(file, setStatus);
+          if (window.Capacitor && window.Capacitor.isNativePlatform && window.Capacitor.isNativePlatform()) {
+            setStatus('opening share…');
+            await deliver(file, setStatus);
+          } else {   // DEMO: web share sheet needs its own tap
+            setStatus('');
+            await new Promise(function (done) { demoShareNow(file, setStatus, done); });
+          }
           if (curRec.consent.brand) brandUpload(r.blob, curRec).catch(function () {});
         } catch (e) { console.warn('[CUT] encode/share failed', e); setStatus('failed: ' + (e.message || e)); }
         busy = false; setTimeout(function () { preview.stop(); }, 500);

@@ -172,6 +172,47 @@ patch("function resizeStage() { if (!stage) return; const dpr = Math.min(window.
       "stage.style.width = innerWidth + 'px'; stage.style.height = innerHeight + 'px'; "
       "stage.width = Math.round(innerWidth * dpr); stage.height = Math.round(innerHeight * dpr); }")
 
+# ── 11. Web share needs a FRESH tap: iOS voids the gesture during the encode ─
+#   The game's own comment documents the trap ("navigator.share silently no-ops once
+#   the tap's activation has expired") — the app solves it with a native Share call,
+#   but the web path still calls navigator.share after the multi-second encode, so
+#   iOS never opens the share sheet. Demo: after the encode, show a SHARE THE CLIP
+#   button; its own tap carries fresh user activation into navigator.share.
+patch('async function deliver(file, status) {',
+      "function demoShareNow(file, status, done) {   // DEMO: two-tap share (see note above)\n"
+      "      hidePrompt();\n"
+      "      var b = document.getElementById('demoShareNow'), d = document.getElementById('demoShareSkip');\n"
+      "      if (!b) {\n"
+      "        b = document.createElement('button'); b.id = 'demoShareNow';\n"
+      "        b.style.cssText = 'position:fixed;left:50%;top:50%;transform:translate(-50%,-50%);z-index:9002;'\n"
+      "          + 'font:700 16px/1.2 ui-sans-serif,system-ui;letter-spacing:.12em;color:#06131a;'\n"
+      "          + 'background:linear-gradient(180deg,#b0f4ff,#4ee0ff);border:0;border-radius:12px;'\n"
+      "          + 'padding:18px 30px;box-shadow:0 0 34px rgba(78,224,255,.45)';\n"
+      "        b.textContent = '\\u2B06 SHARE THE CLIP';\n"
+      "        document.body.appendChild(b);\n"
+      "        d = document.createElement('button'); d.id = 'demoShareSkip';\n"
+      "        d.style.cssText = 'position:fixed;left:50%;top:50%;transform:translate(-50%,64px);z-index:9002;'\n"
+      "          + 'font:600 12px/1 ui-sans-serif,system-ui;letter-spacing:.1em;color:#9ccfde;'\n"
+      "          + 'background:none;border:1px solid rgba(156,207,222,.35);border-radius:8px;padding:9px 16px';\n"
+      "        d.textContent = 'not now';\n"
+      "        document.body.appendChild(d);\n"
+      "      }\n"
+      "      b.style.display = 'block'; d.style.display = 'block';\n"
+      "      function cleanup() { b.style.display = 'none'; d.style.display = 'none'; }\n"
+      "      d.onclick = function () { cleanup(); status && status('cancelled'); done(false); };\n"
+      "      b.onclick = function () { cleanup(); deliver(file, status).then(done, function () { done(false); }); };\n"
+      "    }\n"
+      "    async function deliver(file, status) {")
+
+patch("          setStatus('opening share…');\n          await deliver(file, setStatus);",
+      "          if (window.Capacitor && window.Capacitor.isNativePlatform && window.Capacitor.isNativePlatform()) {\n"
+      "            setStatus('opening share…');\n"
+      "            await deliver(file, setStatus);\n"
+      "          } else {   // DEMO: web share sheet needs its own tap\n"
+      "            setStatus('');\n"
+      "            await new Promise(function (done) { demoShareNow(file, setStatus, done); });\n"
+      "          }")
+
 # ── 10. Lift the endcard text block clear of the bottom share prompt ─────────
 #   Even with the viewport fix, the CTA line at 0.63·OH clears the DOM prompt by
 #   only ~15–22px on small phones with the Safari bar visible. Raising the whole
