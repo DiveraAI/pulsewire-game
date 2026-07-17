@@ -80,6 +80,15 @@ patch('</head>',
       '  .dw-tag  { font-size: 11px; letter-spacing: .18em; color: #6b8b96; text-align: center; }\n'
       '  #demoMenuStore { display: block; margin: 14px auto 0; max-width: 340px; font-size: 12px;\n'
       '    letter-spacing: .12em; padding: 12px 16px; }\n'
+      '  /* Result screen: the base game has no backdrop (relies on a calm board behind it) and\n'
+      '     centers with justify-content, which overflows off BOTH ends on short phones. The demo\n'
+      '     result stack is taller (badge wall), so: opaque backdrop kills the board/HUD bleed-\n'
+      '     through, flex-start + margin:auto keeps it centered when short and scrollable when tall. */\n'
+      '  #resultScreen { background: rgba(4,8,14,0.96) !important; }\n'
+      '  #resultScreen.active { overflow-y: auto; -webkit-overflow-scrolling: touch;\n'
+      '    justify-content: flex-start !important; }\n'
+      '  #resultScreen #resLabel { margin-top: auto; }\n'
+      '  #resultScreen #restartBtn { margin-bottom: auto; flex-shrink: 0; }\n'
       '</style>\n</head>')
 
 # ── 4. Badge wall markup (hidden until the L5 full-clear) ───────────────────
