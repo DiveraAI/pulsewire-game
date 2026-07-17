@@ -181,6 +181,17 @@ section { padding: 56px 0; border-top: 1px solid rgba(255,255,255,0.05); }
   background: #05070b;
 }
 
+/* Closing line — the store page's outro, shared voice */
+.closing-line {
+  margin: 56px auto 8px;
+  max-width: 560px;
+  text-align: center;
+  font-size: 14px;
+  letter-spacing: 0.06em;
+  color: var(--text-dim);
+  font-style: italic;
+}
+
 /* Screenshots */
 .shots { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 18px; align-items: start; }
 .shot { text-align: center; }
