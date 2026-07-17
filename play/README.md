@@ -53,6 +53,15 @@ missing anchor printed — update `make_demo.py`, never ship a half-patched demo
    permanently, so returners never have to re-clear L5 to find the store link.
 8. **Share/social meta** — og/twitter cards + canonical for the `/play/` URL ("Free Browser
    Game") so bio links unfurl properly.
+9. **iPhone Safari share-cut fix** — the base game sizes the replay canvas CSS with `100vh`
+   but its buffer with `innerHeight`; those differ in mobile Safari (address bar), stretching
+   the clip and pushing the endcard CTA into the share prompt. Demo sizes the stage in px from
+   `innerWidth/innerHeight` (re-synced on resize) and lifts the endcard text block
+   (title 0.46→0.40, CTA 0.63→0.56). Harmless no-op in the app's WKWebView.
+10. **Victory-screen backdrop** — the base result screen is backdrop-less and flex-centered
+    (overflows off both ends on phones); the demo's taller badge-wall stack over a busy board
+    made HUD/patrols bleed through the text. Demo skin: near-opaque backdrop + flex-start with
+    `margin:auto` bookends (centered when short, internally scrollable when tall).
 
 ## Verified 2026-07-17 (browser pane, mobile viewport)
 
