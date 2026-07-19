@@ -62,6 +62,28 @@ patch('<title>PULSEWIRE</title>',
 patch('let levels = getLevels();',
       f'let levels = getLevels().slice(0, {DEMO_LEVELS});   // DEMO: training segment only')
 
+# ── 2b. STRIP the paid level DATA (levels 6-21) out of the shipped file ──────
+#   The slice above only HID levels 6-21 at runtime — the 16 paid level designs
+#   stayed in LEVELS_DEFAULT, downloadable/view-source. Here we truncate the
+#   array to the 5 demo levels so the paid campaign designs are genuinely absent.
+#   (The editor stays: it is fused into the render/input loop and cannot be cut
+#   without breaking the demo; it is dormant behind editorUnlocked and, with the
+#   data gone, can only touch these 5 levels anyway.)
+_L6 = "{ id:6, name:'EVENT HORIZON'"
+if html.count(_L6) != 1:
+    sys.exit(f'FATAL: level-6 truncation anchor not unique/found ({html.count(_L6)}x)')
+_i6 = html.index(_L6)
+if html[:_i6].count('{ id:') != DEMO_LEVELS:
+    sys.exit(f'FATAL: expected {DEMO_LEVELS} level objects before L6, found {html[:_i6].count("{ id:")}')
+_ids_before = html.count('{ id:')
+_close = html.index('\n  ];', _i6)
+html = html[:_i6].rstrip() + html[_close:]
+# Verify the paid level DESIGN DATA is gone (the { id:6.. } objects). The array
+# holds 21 level objects; there are a few unrelated `{ id:` structures elsewhere,
+# so we check the id:6 object specifically + that exactly 16 objects were removed.
+if '{ id:6' in html or (_ids_before - html.count('{ id:')) != (21 - DEMO_LEVELS):
+    sys.exit(f'FATAL: level truncation failed — removed {_ids_before - html.count("{ id:")}, id:6 present={("{ id:6" in html)}')
+
 # ── 3. Hide Studio / editor / bundle entries (elements stay: JS handlers keep
 #       their references; they are simply unreachable) ────────────────────────
 patch('</head>',
