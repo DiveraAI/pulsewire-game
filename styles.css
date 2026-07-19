@@ -99,28 +99,10 @@ a:hover { text-decoration: underline; }
 }
 .hero-hook b { color: var(--flare); font-weight: 700; }
 
-/* Official Apple "Download on the App Store" badge */
-.cta { margin-top: 34px; display: flex; flex-direction: column; align-items: center; gap: 6px; }
+/* Official Apple "Download on the App Store" badge — the primary CTA */
+.cta { margin-top: 34px; display: flex; flex-direction: column; align-items: center; gap: 10px; }
 
-/* PLAY — the primary CTA: the browser game IS the product being promoted */
-.play-cta {
-  display: block;
-  font-size: 17px;
-  font-weight: 700;
-  letter-spacing: 0.12em;
-  color: #06131a;
-  background: linear-gradient(180deg, var(--sink-bright), var(--sink));
-  text-decoration: none;
-  border-radius: 12px;
-  padding: 18px 34px;
-  box-shadow: 0 0 34px rgba(78, 224, 255, 0.35), inset 0 0 12px rgba(255, 255, 255, 0.25);
-  transition: transform .12s, box-shadow .15s;
-}
-.play-cta:hover { transform: translateY(-1px); box-shadow: 0 0 48px rgba(78, 224, 255, 0.5), inset 0 0 12px rgba(255,255,255,0.3); }
-.play-sub { font-size: 12px; letter-spacing: 0.14em; color: var(--sink); margin-bottom: 18px; }
-
-/* Store badge — second position: the upgrade path, never the gate */
-.store-sub { font-size: 11px; letter-spacing: 0.1em; color: var(--text-dim); }
+.store-sub { font-size: 12px; letter-spacing: 0.1em; color: var(--text-dim); }
 .appstore-badge {
   display: inline-block;
   /* Apple requires clear space around the badge of at least 1/10 its height */
@@ -135,6 +117,13 @@ a:hover { text-decoration: underline; }
 }
 .appstore-badge:hover { transform: translateY(-1px); }
 .appstore-badge:hover img { filter: drop-shadow(0 0 26px rgba(78,224,255,0.3)); }
+
+/* Hero primary badge — larger + brighter glow so it reads as the main call to action */
+.appstore-primary img {
+  height: 67px;
+  filter: drop-shadow(0 0 30px rgba(78,224,255,0.35));
+}
+.appstore-primary:hover img { filter: drop-shadow(0 0 40px rgba(78,224,255,0.5)); }
 
 /* ── SECTIONS ── */
 section { padding: 56px 0; border-top: 1px solid rgba(255,255,255,0.05); }

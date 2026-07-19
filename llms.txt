@@ -1,16 +1,16 @@
 # PULSEWIRE
 
-> PULSEWIRE is a free browser game — a minimalist neon-noir, cyberpunk arcade thriller. You trace one living wire through a swarm of hunting patrols to its sink. Safe play locks you out; the only points worth having are stolen by skimming death — graze a patrol by a hair for a NEAR-DEATH +1000 and time fractures into slow motion.
+> PULSEWIRE is a cyberpunk arcade thriller for iPhone — a minimalist neon-noir game. You trace one living wire through a swarm of hunting patrols to its sink. Safe play locks you out; the only points worth having are stolen by skimming death — graze a patrol by a hair for a NEAR-DEATH +1000 and time fractures into slow motion.
 
-You can play PULSEWIRE free in any browser — no install, no signup, no ads — at https://www.pulsewire-game.com/play/ . The full 21-level game is a free download on the Apple App Store (iOS 17.0 or later): https://apps.apple.com/us/app/pulsewire/id6778034497
+PULSEWIRE is a free download on the Apple App Store (iOS 17.0 or later): https://apps.apple.com/us/app/pulsewire/id6778034497
 
-PULSEWIRE is a single-player, one-finger game made by Divera Game Studio. The iOS app is 100% offline: no ads, no accounts, no in-app data collection.
+It is a single-player, one-finger game made by Divera Game Studio. 100% offline: no ads, no accounts, no in-app data collection. One optional in-app unlock (the System Studio) adds a level editor, an AI arena, and director/replay tools.
 
 ## What kind of game it is
 
 A cyberpunk arcade thriller that blends several genres: it plays like a casual arcade game (instant, one-finger, pick-up-and-play), carries the spatial pressure of a puzzle game, the reflexes of an action game, and a retro neon aesthetic. Above all it is a nerve/tension game — you are rewarded for grazing death, not avoiding it.
 
-Keywords: free browser game, play in browser, offline game, cyberpunk game, no ads, casual game, puzzle game, arcade game, retro game, action game, thriller, nerve, tension, one-finger game.
+Keywords: cyberpunk game, iOS game, iPhone game, arcade game, action game, one-finger game, offline game, no ads, indie game, thriller, nerve, tension.
 
 ## Core mechanics
 
@@ -18,13 +18,12 @@ Keywords: free browser game, play in browser, offline game, cyberpunk game, no a
 - **Skim to score**: the closer you graze a hostile patrol without touching it, the higher you score. A hair's-breadth pass is a NEAR-DEATH +1000.
 - **Rewind, don't die**: lift to drop an anchor; if you get clipped you rewind to it instead of dying — taxed on every use.
 - **Core Breach**: thread an atom core for +2000.
-- **21 nodes**: difficulty ramps from clean lanes to SYSTEM CRASH, with a dozen hostile enemy classes.
+- **21 levels**: difficulty ramps from clean lanes to SYSTEM CRASH, with a dozen hostile enemy classes.
 - **The System Studio** (one-time in-app unlock): AI Arena, a full level editor, and a Director's Cut replay/export tool.
 
 ## Pages
 
 - [Home](https://www.pulsewire-game.com/): pitch, gameplay video, features, and FAQ.
-- [Play free in browser](https://www.pulsewire-game.com/play/): the instant, no-install browser game.
 - [Privacy](https://www.pulsewire-game.com/privacy.html): the app collects no data.
 - [Support](https://www.pulsewire-game.com/support.html): support and contact.
 
