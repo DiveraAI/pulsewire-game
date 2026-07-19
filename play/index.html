@@ -6840,5 +6840,36 @@
   } catch (e) {}
 })();
 </script>
+
+<!-- ── GA4 funnel tracking: demo start + in-game App Store CTAs ── -->
+<script>
+(function () {
+  if (typeof gtag !== 'function') return;
+  var source = new URLSearchParams(window.location.search).get('src')
+    || new URLSearchParams(window.location.search).get('utm_source') || '(direct)';
+
+  // Fire once when the player actually begins a run — the true "played the demo" signal
+  var begun = false;
+  var start = document.getElementById('startBtn');
+  if (start) start.addEventListener('click', function () {
+    if (begun) return; begun = true;
+    gtag('event', 'demo_start', { source: source });
+  });
+
+  // Any App Store link inside the demo (results wall + returning-player menu)
+  Array.prototype.forEach.call(
+    document.querySelectorAll('a[href*="apps.apple.com"]'),
+    function (a) {
+      a.addEventListener('click', function () {
+        gtag('event', 'appstore_click', {
+          source: source,
+          cta_location: a.id === 'demoMenuStore' ? 'demo_menu' : 'demo_wall',
+          link_url: a.getAttribute('href')
+        });
+      });
+    }
+  );
+})();
+</script>
 </body>
 </html>

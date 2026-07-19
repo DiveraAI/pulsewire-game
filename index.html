@@ -313,5 +313,40 @@
   })();
   </script>
 
+  <!-- ── GA4 funnel tracking: PLAY + App Store CTAs, with source-attribution passthrough ── -->
+  <script>
+  (function () {
+    if (typeof gtag !== 'function') return;
+    var params = new URLSearchParams(window.location.search);
+    var attrKeys = ['src', 'utm_source', 'utm_medium', 'utm_campaign', 'utm_term', 'utm_content', 'gclid'];
+    var attr = {};
+    attrKeys.forEach(function (k) { var v = params.get(k); if (v) attr[k] = v; });
+    var source = attr.src || attr.utm_source || '(direct)';
+
+    // Carry the traffic source onto the PLAY link so /play/ inherits it
+    var play = document.querySelector('.play-cta');
+    if (play) {
+      var keep = new URLSearchParams();
+      attrKeys.forEach(function (k) { if (attr[k]) keep.set(k, attr[k]); });
+      var qs = keep.toString();
+      if (qs) {
+        var href = play.getAttribute('href') || 'play/';
+        play.setAttribute('href', href + (href.indexOf('?') === -1 ? '?' : '&') + qs);
+      }
+      play.addEventListener('click', function () {
+        gtag('event', 'play_click', { source: source, cta_location: 'hero', link_url: play.getAttribute('href') });
+      });
+    }
+
+    // App Store badge (opens a new tab, so the page stays alive)
+    var badge = document.querySelector('.appstore-badge');
+    if (badge) {
+      badge.addEventListener('click', function () {
+        gtag('event', 'appstore_click', { source: source, cta_location: 'hero_badge', link_url: badge.getAttribute('href') });
+      });
+    }
+  })();
+  </script>
+
 </body>
 </html>
