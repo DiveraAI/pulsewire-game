@@ -214,8 +214,21 @@ section { padding: 56px 0; border-top: 1px solid rgba(255,255,255,0.05); }
 }
 .feature p { font-size: 14px; color: var(--text-dim); }
 
+/* FAQ — mirrors the FAQPage structured data */
+.faq { max-width: 720px; margin: 0 auto; display: grid; gap: 14px; }
+.faq-item {
+  border: 1px solid rgba(78,224,255,0.14); background: rgba(78,224,255,0.03);
+  border-radius: 10px; padding: 18px 20px;
+}
+.faq-item h3 {
+  font-family: 'Major Mono Display', monospace; font-size: 14px; letter-spacing: 0.04em;
+  color: var(--sink-bright); margin-bottom: 8px; line-height: 1.4;
+}
+.faq-item p { font-size: 14px; color: var(--text-dim); }
+
 /* Pitch */
 .pitch { max-width: 680px; margin: 0 auto; text-align: center; font-size: 17px; color: var(--text-bright); }
+.pitch b { color: var(--sink-bright); font-weight: 700; }
 #studio .pitch { margin-bottom: 40px; }   /* air between the intro line and the trio */
 .pitch .src { color: var(--source-bright); }
 .pitch .snk { color: var(--sink-bright); }
